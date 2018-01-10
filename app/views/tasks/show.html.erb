@@ -1,0 +1,17 @@
+<h1>DETAIL</h1>
+<p><%= t('view.detail') %></p>
+   <% if @task.errors.any? %>
+　<p><%= t('error.error1') %></p>
+　<% end %>　
+<p>
+<%= link_to "EDIT", edit_task_path(id: @task.id) %><br />
+<%= t('view.taskname') %><%= @task.title %><br />
+<%= t('view.deadline') %><%= @task.line %><br />
+<%= t('view.note') %><%= @task.memo %><br />
+<%= t('view.priority') %><%= @task.priority %><br />
+<%= t('view.statusId') %><%= @task.statusId %><br />
+<%= t('view.labelId') %><%= @task.labelId %><br />
+<%= t('view.createdAt') %><%= @task.created_at %><br />
+<%= link_to "DELETE",task_path(id: @task.id) , method: :delete %>
+</p>
+

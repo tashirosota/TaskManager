@@ -1,0 +1,19 @@
+<% provide(:title, "Task Manager") %>
+	<h1>TOP</h1>
+	<p><%= t('view.tasklist') %></p>
+	<% if flash[:noticeCreate] %>
+	<p><%= flash[:noticeCreate] %></p>
+	<% end %>
+	<% if flash[:noticeEdit] %>
+	<p><%= flash[:noticeEdit] %></p>
+	<% end %>
+	<% if flash[:noticeDelete] %>
+	<p><%= flash[:noticeDelete] %></p>
+	<% end %>	
+	<p>
+	<%= link_to "CREATE", new_task_path %><br />
+	<% @tasks.each do |task| %>
+	<h5><%= t('view.taskname') %><%= task.title %> <%= t('view.note') %><%= task.memo %><%= t('view.createdAt') %><%= task.created_at %>
+	<%= link_to "DETAIL", task_path(id: task.id)%></h5>
+	<% end %>
+	</p>

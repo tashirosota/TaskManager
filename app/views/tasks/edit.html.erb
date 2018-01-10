@@ -1,0 +1,26 @@
+<h1>EDIT</h1>
+<p><%=t('view.edit')  %></p>
+<% if flash[:notice] %>
+<p><%= flash[:notice] %></p>
+<% end %>
+<%= form_for @task  do |f| %>
+<%= f.label :title, t('view.taskname')  %>
+  <%= f.text_field :title %>
+<br />
+  <%= f.label :line, t('view.deadline') %>
+  <%= f.text_field :line %>
+ <br />
+  <%= f.label :memo, t('view.note') %>
+  <%= f.text_field :memo %>
+<br />
+  <%= f.label :priority, t('view.priority') %>
+  <%= f.text_field :priority %>
+<br />
+  <%= f.label :statusId, t('view.statusId') %>
+  <%= f.text_field :statusId %>
+<br />
+  <%= f.label :labelId, t('view.labelId') %>
+  <%= f.text_field :labelId %>
+<br />
+  <%= f.submit "CHECK"  %>
+<% end %>
