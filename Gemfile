@@ -12,9 +12,9 @@ gem 'rails', '~> 5.1.4'
 gem 'sqlite3', group: :development
 # Use Postgre as the database for Active Record when using production
 gem 'pg’
-#, group: :production
+#,group: :production
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
