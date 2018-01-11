@@ -9,6 +9,7 @@ ja:
     priority: "優先度 : "
     statusId: "進捗 : "
     labelId: "ラベル : "
+    line: "終了期限 : "
     detail: タスクの詳細画面です。
     createdAt: "登録日 : "
     edit: タスク編集画面です。

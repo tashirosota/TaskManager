@@ -3,6 +3,11 @@ class TasksController < ApplicationController
     @tasks =Task.order(created_at: :desc)
     p @tasks
   end
+
+  def sort_by_deadline
+    @tasks =Task.order(line: :desc)
+    p @tasks
+  end
     
   def edit
     @task =Task.find(params[:id])
