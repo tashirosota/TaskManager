@@ -4,10 +4,9 @@ class CreateTasks < ActiveRecord::Migration[5.1]
       t.string :title , null: false, limit: 20
       t.datetime :line
       t.text :memo , limit: 500
-      t.integer :priority
-      t.integer :statusId
+      t.string :priority
+      t.string :status
       t.integer :labelId
-
       t.timestamps
     end
   end

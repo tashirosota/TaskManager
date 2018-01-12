@@ -12,16 +12,16 @@
   <%= f.text_field :memo %>
 <br />
   <%= f.label :priority, t('view.priority') %>
-  <%= f.text_field :priority %>
+ <%= f.select :priority , [["高", "高"], ["中", "中"], ["低", "低"]] %>
 <br />
-  <%= f.label :statusId, t('view.statusId') %>
-  <%= f.text_field :statusId %>
+  <%= f.label :status, t('view.statusId') %>
+  <%= f.select :status , [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %>
 <br />
   <%= f.label :labelId, t('view.labelId') %>
   <%= f.text_field :labelId %>
 <br />
   <%= f.submit "CHECK" %>
 <% end %>
-　　<% if @task.errors.any? %>
-    　　<%= t('error.error1') %>
-　　<% end %>
+  <% if @task.errors.any? %>
+    <%= t('error.error1') %>
+  <% end %>

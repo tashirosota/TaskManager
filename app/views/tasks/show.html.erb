@@ -9,7 +9,7 @@
 <%= t('view.line') %><%= @task.line %><br />
 <%= t('view.note') %><%= @task.memo %><br />
 <%= t('view.priority') %><%= @task.priority %><br />
-<%= t('view.statusId') %><%= @task.statusId %><br />
+<%= t('view.statusId') %><%= @task.status %><br />
 <%= t('view.labelId') %><%= @task.labelId %><br />
 <%= t('view.createdAt') %><%= @task.created_at %><br />
 <%= link_to "DELETE",task_path(id: @task.id) , method: :delete %>

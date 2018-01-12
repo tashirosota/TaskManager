@@ -1,7 +1,16 @@
-class TasksController < ApplicationController  
+class TasksController < ApplicationController
   def index
     @tasks =Task.all
-    @tasks = Task.order(params[:sort])
+    priority = ["高","中","低"]
+    if params[:sort]==('priority')
+      @tasks = Task.order(params[:sort]) #余裕があればソート順の指定
+      p priority
+    else
+      @tasks = Task.order(params[:sort])
+    end
+
+    #@tasks = Task.where(title: params[:titleWord] , status: params[:statusWord]) #検索時に追加
+
     p @tasks
   end
 
@@ -21,7 +30,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :statusId, :labelId))
+    @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId))
     p @task
 
     if @task.save
@@ -31,12 +40,12 @@ class TasksController < ApplicationController
       render :new
     end
   end
-    
+
   def update
     @task = Task.find(params[:id]) 
     p @task    
     @task.save
-    if@task.update(params.require(:task).permit(:title, :line, :memo, :priority, :statusId, :labelId))
+    if@task.update(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId))
       flash[:noticeEdit] = t('flash.edit')
       redirect_to tasks_path
     else

@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20171213021645) do
     t.string "title", limit: 20, null: false
     t.datetime "line"
     t.text "memo", limit: 500
-    t.integer "priority"
-    t.integer "statusId"
+    t.string "priority"
+    t.string "status"
     t.integer "labelId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -3,11 +3,11 @@ ja:
   hello: こんにちは
   view:
     tasklist: タスク一覧が表示されます。
-    taskname: "タスク名 : "
+    taskname: "タイトル : "
     deadline: "締切 : " 
     note: "メモ : "
     priority: "優先度 : "
-    statusId: "進捗 : "
+    statusId: "ステータス : "
     labelId: "ラベル : "
     line: "終了期限 : "
     detail: タスクの詳細画面です。

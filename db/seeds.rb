@@ -5,6 +5,6 @@
 #
 #movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#Task.create(:title => 'AAA' , :line => '2011-06-28', :memo => 'memo', :prioriy => 3, :statusId => 3, :labeled => 2)
+# Task.create(:title => 'AAA' , :line => '2011-06-28', :memo => 'memo', :prioriy => 3, :status => , :labeled => 2)
 #Task.create(:title => "B1234BB"  ,:text => "memo223")
 #tasks = Task.create([{ title: 'AAA' }, { line: DateTime.now }, { memo: 'AAA' }, { priority: 1 }, { statusId: 1 }, { labelId: 2 }])
