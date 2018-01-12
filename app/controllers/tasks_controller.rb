@@ -1,24 +1,20 @@
 class TasksController < ApplicationController
   def index
-    @tasks =Task.all
     priority = ["高","中","低"]
 
-    if params[:sort]==('priority')
-      @tasks = Task.order(params[:sort]) #余裕があればソート順の指定
-      p priority
-    else
-      @tasks = Task.order(params[:sort])
-    end
-
     if params[:commit]=="SEARCH_TITLE"
+      @tasks = Task.where(title: params[:titleWord]) #タイトル検索
+    elsif params[:commit]=="SEARCH_STATUS"
+      @tasks = Task.where(status: params[:statusWord]) #ステータス検索
+    elsif params[:sort]==('priority') #優先度
+      @tasks = Task.order(params[:sort]) #余裕があればソート順の指定
+    elsif params[:sort]==('line') #締め切り
+      @tasks = Task.order(params[:sort])
+    elsif params[:sort]==('created_at DESC')#登録日
+      @tasks = Task.order(params[:sort])
+    else
       @tasks =Task.all
-      @tasks = Task.where(title: params[:titleWord]) #検索時に追加
     end
-    if params[:commit]=="SEARCH_STATUS"
-      @tasks =Task.all
-      @tasks = Task.where(status: params[:statusWord]) #検索時に追加
-    end
-    p @tasks
 
   end
 

@@ -17,8 +17,11 @@
         <%= submit_tag "SEARCH_TITLE" %><br />
     <% end %>
     <%= form_tag(tasks_path, method: :get ) do %>
-        STATUS is<%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
-        <%= submit_tag "SEARCH_STATUS" %><br />
+        STATUS is <%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
+        <%= submit_tag "SEARCH_STATUS"  %><br />
+    <% end %>
+    <%= form_tag(tasks_path, method: :get ) do %>
+        <%= submit_tag "ALL_LIST" %><br />
     <% end %>
 
 	<% @tasks.each do |task| %>
