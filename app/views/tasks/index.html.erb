@@ -12,10 +12,14 @@
 	<% end %>	
 	<p>
 	<%= link_to "CREATE", new_task_path %><br />
-
-    TITLE is <%=text_field_tag :titleWord , '' , :value => '' %> / STATUS is
-  <%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了", "未設定" => ""}) %><br />
-  <%= link_to "SEARCH",root_path(titleWord: :titleWord ,statusWord: :statusWord) %>
+    <%= form_tag(tasks_path, method: :get ) do %>
+        TITLE is <%= text_field_tag :titleWord %>
+        <%= submit_tag "SEARCH_TITLE" %><br />
+    <% end %>
+    <%= form_tag(tasks_path, method: :get ) do %>
+        STATUS is<%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
+        <%= submit_tag "SEARCH_STATUS" %><br />
+    <% end %>
 
 	<% @tasks.each do |task| %>
 	<h5><%= t('view.taskname') %><%= task.title %>

@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   def index
     @tasks =Task.all
     priority = ["高","中","低"]
+
     if params[:sort]==('priority')
       @tasks = Task.order(params[:sort]) #余裕があればソート順の指定
       p priority
@@ -9,21 +10,28 @@ class TasksController < ApplicationController
       @tasks = Task.order(params[:sort])
     end
 
-    #@tasks = Task.where(title: params[:titleWord] , status: params[:statusWord]) #検索時に追加
-
+    if params[:commit]=="SEARCH_TITLE"
+      @tasks =Task.all
+      @tasks = Task.where(title: params[:titleWord]) #検索時に追加
+    end
+    if params[:commit]=="SEARCH_STATUS"
+      @tasks =Task.all
+      @tasks = Task.where(status: params[:statusWord]) #検索時に追加
+    end
     p @tasks
+
   end
 
   def edit
     @task =Task.find(params[:id])
     p @task
-  end 
+  end
 
   def show
     @task =Task.find(params[:id])
     p @task
   end
-      
+
   def new
     @task =Task.new
     p @task
@@ -42,8 +50,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id]) 
-    p @task    
+    @task = Task.find(params[:id])
+    p @task
     @task.save
     if@task.update(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId))
       flash[:noticeEdit] = t('flash.edit')
@@ -52,11 +60,11 @@ class TasksController < ApplicationController
       render :show
     end
   end
-    
+
   def destroy
     @task = Task.find(params[:id])
-    p @task  
-    
+    p @task
+
     if @task.delete
       flash[:noticeDelete] = t('flash.delete')
       redirect_to tasks_path
@@ -64,4 +72,3 @@ class TasksController < ApplicationController
   end
 end
 
-  
