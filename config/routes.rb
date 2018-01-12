@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :tasks
-  get 'root_path', to: 'tasks#index'
-  get 'tasks_path', to: 'tasks#sort_by_deadline'
+  resources :tasks do
+  end
   get '', to: 'tasks#index'
+  get 'root', to: 'tasks#index'
 end

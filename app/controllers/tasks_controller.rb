@@ -1,14 +1,10 @@
 class TasksController < ApplicationController  
   def index
-    @tasks =Task.order(created_at: :desc)
+    @tasks =Task.all
+    @tasks = Task.order(params[:sort])
     p @tasks
   end
 
-  def sort_by_deadline
-    @tasks =Task.order(line: :desc)
-    p @tasks
-  end
-    
   def edit
     @task =Task.find(params[:id])
     p @task
