@@ -15,7 +15,7 @@ ja:
     edit: タスク編集画面です。
     create: タスク登録画面です。
   error:
-    error1: 失敗だよ〜ん。
+    error1: 失敗。
   flash:
     edit: タスクが編集されました。
     delete: タスクが削除されました。

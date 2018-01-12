@@ -1,15 +1,13 @@
 <h1>CREATE</h1>
-<p><%=t('view.create')  %><br />
-	<% if @task.errors.any? %>
-　<p><%= t('error.error1') %></p>
-　<% end %>
+<%=t('view.create')  %><br />
+
 <%= form_for @task do |f| %>
-  <%= f.label :title, t('view.taskname')  %>
+  <%= f.label :title, t('view.taskname') %>
   <%= f.text_field :title %>
 <br />
   <%= f.label :line, t('view.line') %>
   <%= f.text_field :line %>
- <br />
+<br />
   <%= f.label :memo, t('view.note') %>
   <%= f.text_field :memo %>
 <br />
@@ -24,3 +22,6 @@
 <br />
   <%= f.submit "CHECK" %>
 <% end %>
+　　<% if @task.errors.any? %>
+    　　<%= t('error.error1') %>
+　　<% end %>
