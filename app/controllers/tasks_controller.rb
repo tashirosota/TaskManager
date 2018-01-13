@@ -1,19 +1,21 @@
 class TasksController < ApplicationController
+
+  PER = 10
+
   def index
     priority = ["高","中","低"]
-
     if params[:commit]=="SEARCH_TITLE"
-      @tasks = Task.where(title: params[:titleWord]) #タイトル検索
+      @tasks = Task.where(title: params[:titleWord]).page(params[:page]).per(PER) #pagination #タイトル検索
     elsif params[:commit]=="SEARCH_STATUS"
-      @tasks = Task.where(status: params[:statusWord]) #ステータス検索
+      @tasks = Task.where(status: params[:statusWord]).page(params[:page]).per(PER) #pagination #ステータス検索
     elsif params[:sort]==('priority') #優先度
-      @tasks = Task.order(params[:sort]) #余裕があればソート順の指定
+      @tasks = Task.order(params[:sort]).page(params[:page]).per(PER) #pagination #余裕があればソート順の指定
     elsif params[:sort]==('line') #締め切り
-      @tasks = Task.order(params[:sort])
+      @tasks = Task.order(params[:sort]).page(params[:page]).per(PER) #pagination
     elsif params[:sort]==('created_at DESC')#登録日
-      @tasks = Task.order(params[:sort])
+      @tasks = Task.order(params[:sort]).page(params[:page]).per(PER) #pagination
     else
-      @tasks =Task.all
+      @tasks =Task.page(params[:page]).per(PER) #pagination
     end
 
   end

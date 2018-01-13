@@ -32,8 +32,9 @@
     <%= t('view.line') %><%= task.line %>
 	<%= link_to "DETAIL", task_path(id: task.id)%></h5>
 	<% end %>
+  <%= paginate @tasks %>
   <%= link_to "SORT BY DEAD_LINE",tasks_path(sort: 'line')  %><br />
-<%= link_to "SORT BY PRIORITY",tasks_path(sort: 'priority')  %><br />
+  <%= link_to "SORT BY PRIORITY",tasks_path(sort: 'priority')  %><br />
   <%= link_to "SORT BY CREATED_AT_DESC",tasks_path(sort: 'created_at DESC')  %><br />
 
 </p>
