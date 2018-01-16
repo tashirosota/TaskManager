@@ -38,7 +38,6 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId))
     p @task
-
     if @task.save
       flash[:noticeCreate] = t('flash.create')
       redirect_to tasks_path
@@ -62,7 +61,6 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     p @task
-
     if @task.delete
       flash[:noticeDelete] = t('flash.delete')
       redirect_to tasks_path

@@ -14,6 +14,9 @@ module Ex
     config.time_zone = 'Tokyo'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
+ #   Rails.application.config.assets.paths << Rails.root.join("vendor", "original_assets", "images")
+#Rails.application.config.assets.paths << Rails.root.join("vendor", "original_assets", "stylesheets")
+#Rails.application.config.assets.paths << Rails.root.join("vendor", "original_assets", "javascripts")
     # -- all .rb files in that directory are automatically loaded.
   end
 end

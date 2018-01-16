@@ -1,17 +1,34 @@
 <h1>DETAIL</h1>
-<p><%= t('view.detail') %></p>
    <% if @task.errors.any? %>
 　<p><%= t('error.error1') %></p>
 　<% end %>　
 <p>
-<%= link_to "EDIT", edit_task_path(id: @task.id) %><br />
-<%= t('view.taskname') %><%= @task.title %><br />
-<%= t('view.line') %><%= @task.line %><br />
-<%= t('view.note') %><%= @task.memo %><br />
-<%= t('view.priority') %><%= @task.priority %><br />
-<%= t('view.statusId') %><%= @task.status %><br />
-<%= t('view.labelId') %><%= @task.labelId %><br />
-<%= t('view.createdAt') %><%= @task.created_at %><br />
-<%= link_to "DELETE",task_path(id: @task.id) , method: :delete %>
+<%= link_to "EDIT", edit_task_path(id: @task.id) , class:"btn btn-success btn-sm active"%><br />
+<div class="container">
+  <table class="table table-bordered">
+    <thead>
+    <tr class="active">
+      <th><%= t('view.taskname') %></th>
+      <th><%= t('view.note') %></th>
+      <th><%= t('view.priority') %></th>
+      <th><%= t('view.statusId') %></th>
+      <th><%= t('view.labelId') %></th>
+      <th><%= t('view.line') %></th>
+      <th><%= t('view.createdAt') %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= @task.title %></td>
+      <td><%= @task.memo %></td>
+      <td><%= @task.priority %></td>
+      <td><%= @task.status %></td>
+      <td><%= @task.labelId %></td>
+      <td><%= @task.line %></td>
+      <td><%= @task.created_at %></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<%= link_to "DELETE",task_path(id: @task.id) , method: :delete , class: "btn btn-danger btn-sm active"%>
 </p>
-
