@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>USER LIST</h1>
+<div class="container">
+  <table class="table table-bordered table table-hover">
+  <thead>
+    <tr class="active">
+      <th>Name</th>
+      <th>Pass</th>
+      <th>Role</th>
+      <th></th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.pass %></td>
+        <td><%= user.role %></td>
+        <td class="col-md-3"><%= link_to 'DETAIL', user , class:"btn btn-info btn-sm active"%>
+          <%= link_to 'EDIT', edit_user_path(user), class:"btn btn-success btn-sm active" %>
+        <%= link_to 'DESTROY', user, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger btn-sm active"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<%= link_to 'CREATE', new_user_path , class:"btn btn-success btn-la active"%>

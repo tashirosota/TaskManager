@@ -1,6 +1,5 @@
 <% provide(:title, "Task Manager") %>
-	<h1>TOP</h1>
-	<p><%= t('view.tasklist') %></p>
+	<h1>TASK LIST</h1>
 	<% if flash[:noticeCreate] %>
 	<p><%= flash[:noticeCreate] %></p>
 	<% end %>
@@ -9,11 +8,53 @@
 	<% end %>
 	<% if flash[:noticeDelete] %>
 	<p><%= flash[:noticeDelete] %></p>
-	<% end %>	
-	<p>
-	<%= link_to "CREATE", new_task_path %><br />
-	<% @tasks.each do |task| %>
-	<h5><%= t('view.taskname') %><%= task.title %> <%= t('view.note') %><%= task.memo %><%= t('view.createdAt') %><%= task.created_at %>
-	<%= link_to "DETAIL", task_path(id: task.id)%></h5>
 	<% end %>
-	</p>
+<h3>USER : <%=session[:username]%></h3></br>
+<%= link_to "SIGN OUT",root_path(session: 'logout'),  class: "btn btn-danger btn-la active"%>
+
+    <%if session[:username]=="admin"%>
+<%= link_to "USER LIST",users_url,  class: "btn btn-primary btn-la active"%>
+    <%end%>
+</br></br>
+    <%= form_tag(tasks_path, method: :get) do %>
+        TITLE is <%= text_field_tag :titleWord %>
+        <%= submit_tag "SEARCH_TITLE" , :class => "btn btn-primary " %>
+        STATUS is <%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
+        <%= submit_tag "SEARCH_STATUS" , :class => "btn btn-primary " %>
+    <% end %>
+    </br>
+    <div class="container">
+      <table class="table table-bordered table table-hover">
+        <thead >
+        <tr class="active">
+          <th><%= t('view.taskname') %></th>
+          <th><%= t('view.statusId') %></th>
+          <th><%= t('view.priority') %></th>
+          <th><%= t('view.createdAt') %></th>
+          <th><%= t('view.line') %></th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+       <% @tasks.each do |task| %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.status %></td>
+              <td><%= task.priority %></td>
+              <td><%= task.created_at %></td>
+              <td><%= task.line %></td>
+              <td><%= link_to "DETAIL", task_path(id: task.id), class:"btn btn-info btn-sm active"%>
+            </tr>
+	<% end %>
+        </tbody>
+      </table>
+    </div>
+<%= form_tag(tasks_path, method: :get) do %>
+    <%= link_to "CREATE", new_task_path , class:"btn btn-success btn-sm active" %>
+    <%= submit_tag "ALL LIST", :class => "btn btn-danger btn-sm active" %>
+<% end %>
+</br>
+    <%= link_to "SORT BY DEAD LINE",tasks_path(sort: 'line') , class:"btn btn-primary btn-sm active" %>
+    <%= link_to "SORT BY CREATED AT DESC",tasks_path(sort: 'created_at DESC') , class:"btn btn-primary btn-sm active"  %>
+    <%= link_to "SORT BY PRIORITY",tasks_path(sort: 'priority') , class:"btn btn-primary btn-sm active" %>
+    <br /><%= paginate @tasks %>

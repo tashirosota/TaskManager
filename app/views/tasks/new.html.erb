@@ -1,26 +1,35 @@
 <h1>CREATE</h1>
-<p><%=t('view.create')  %><br />
-	<% if @task.errors.any? %>
-　<p><%= t('error.error1') %></p>
-　<% end %>
+<% if @task.errors.any? %>
+    <%= t('error.error1') %>
+<% end %>
 <%= form_for @task do |f| %>
-  <%= f.label :title, t('view.taskname')  %>
-  <%= f.text_field :title %>
-<br />
-  <%= f.label :line, t('view.deadline') %>
-  <%= f.text_field :line %>
- <br />
-  <%= f.label :memo, t('view.note') %>
-  <%= f.text_field :memo %>
-<br />
-  <%= f.label :priority, t('view.priority') %>
-  <%= f.text_field :priority %>
-<br />
-  <%= f.label :statusId, t('view.statusId') %>
-  <%= f.text_field :statusId %>
-<br />
-  <%= f.label :labelId, t('view.labelId') %>
-  <%= f.text_field :labelId %>
-<br />
-  <%= f.submit "CHECK" %>
+    <div class="container">
+      <table class="table table-bordered table table-hover">
+        <thead >
+        <tr class="active">
+          <th><%= f.label :title, t('view.taskname') %></th>
+          <th><%= f.label :line, t('view.line') %></th>
+          <th><%= f.label :memo, t('view.note') %></th>
+          <th><%= f.label :priority, t('view.priority') %></th>
+          <th><%= f.label :status, t('view.statusId') %></th>
+          <th><%= f.label :labelId, t('view.labelId') %></th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+        <td><%= f.text_field :title %></td>
+        <td><%= f.text_field :line %></td>
+        <td><%= f.text_field :memo %></td>
+        <td><%= f.select :priority , [["高", "高"], ["中", "中"], ["低", "低"]] %></td>
+        <td><%= f.select :status , [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %></td>
+        <td><%= f.text_field :labelId %></td>
+          <%= f.hidden_field :userId, :value => session[:id] %>
+        </tr>
+        </tbody>
+
+        </tbody>
+      </table>
+    </div>
+    </br>
+    <%= f.submit 'DONE', class:"btn btn-success btn-sm active"%>
 <% end %>

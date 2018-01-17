@@ -3,18 +3,19 @@ ja:
   hello: こんにちは
   view:
     tasklist: タスク一覧が表示されます。
-    taskname: "タスク名 : "
-    deadline: "締切 : " 
-    note: "メモ : "
-    priority: "優先度 : "
-    statusId: "進捗 : "
-    labelId: "ラベル : "
+    taskname: "タイトル"
+    deadline: "締切"
+    note: "メモ"
+    priority: "優先度"
+    statusId: "ステータス"
+    labelId: "ラベル"
+    line: "終了期限"
     detail: タスクの詳細画面です。
-    createdAt: "登録日 : "
+    createdAt: "登録日"
     edit: タスク編集画面です。
     create: タスク登録画面です。
   error:
-    error1: 失敗だよ〜ん。
+    error1: 失敗。
   flash:
     edit: タスクが編集されました。
     delete: タスクが削除されました。

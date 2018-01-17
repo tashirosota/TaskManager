@@ -1,0 +1,16 @@
+<h1>TASK MANAGER</h1></br>
+
+<% if params[:session]=="logout"%>
+    <%session[:id] = nil%>
+    <%session[:username] = nil%>
+<%end%>
+
+<%= form_for @user, url: certification_url , method: :get do |f|%>
+    <%= f.label :name%>
+    <%= f.text_field :name%></br></br>
+    <%= f.label :pass%>
+    <%= f.number_field :pass%></br></br>
+    <%= f.submit "SIGN IN", class: "btn btn-primary btn-la active"%></br></br>
+<%end%>
+
+<%= link_to "SIGN UP",new_user_url,  class: "btn btn-danger btn-la active"%>

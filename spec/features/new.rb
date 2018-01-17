@@ -11,7 +11,7 @@ feature "登録画面" do
     expect(page).to have_content 'タスク名 :  '
     expect(page).to have_content '終了期限 : '
     expect(page).to have_content 'メモ : '
-    expect(page).to have_content '重要度 : '
+    expect(page).to have_content '優先度 : '
     expect(page).to have_content '進捗 : '
     expect(page).to have_content 'ラベル : '
   end
