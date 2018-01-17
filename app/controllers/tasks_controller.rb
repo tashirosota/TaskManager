@@ -1,42 +1,40 @@
 class TasksController < ApplicationController
-
   PER = 10
 
   def index
-    priority = ["高","中","低"]
-    if params[:commit]=="SEARCH_TITLE"
-      @tasks = Task.where(title: params[:titleWord]).page(params[:page]).per(PER) #pagination #タイトル検索
-    elsif params[:commit]=="SEARCH_STATUS"
-      @tasks = Task.where(status: params[:statusWord]).page(params[:page]).per(PER) #pagination #ステータス検索
-    elsif params[:sort]==('priority') #優先度
-      @tasks = Task.order(params[:sort]).page(params[:page]).per(PER) #pagination #余裕があればソート順の指定
-    elsif params[:sort]==('line') #締め切り
-      @tasks = Task.order(params[:sort]).page(params[:page]).per(PER) #pagination
-    elsif params[:sort]==('created_at DESC')#登録日
-      @tasks = Task.order(params[:sort]).page(params[:page]).per(PER) #pagination
+    priority = %w[高 中 低]
+    if params[:commit] == 'SEARCH_TITLE'
+      @tasks = Task.where(title: params[:titleWord]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #タイトル検索
+    elsif params[:commit] == 'SEARCH_STATUS'
+      @tasks = Task.where(status: params[:statusWord]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #ステータス検索
+    elsif params[:sort] == 'priority' # 優先度
+      @tasks = Task.order(params[:sort]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #余裕があればソート順の指定
+    elsif params[:sort] == 'line' # 締め切り
+      @tasks = Task.order(params[:sort]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination
+    elsif params[:sort] == 'created_at DESC' # 登録日
+      @tasks = Task.order(params[:sort]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination
     else
-      @tasks =Task.page(params[:page]).per(PER) #pagination
+      @tasks = Task.where(userId: session[:id]).page(params[:page]).per(PER) # pagination
     end
-
   end
 
   def edit
-    @task =Task.find(params[:id])
+    @task = Task.find(params[:id])
     p @task
   end
 
   def show
-    @task =Task.find(params[:id])
+    @task = Task.find(params[:id])
     p @task
   end
 
   def new
-    @task =Task.new
+    @task = Task.new
     p @task
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId))
+    @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId ,:userId))
     p @task
     if @task.save
       flash[:noticeCreate] = t('flash.create')
@@ -50,7 +48,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     p @task
     @task.save
-    if@task.update(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId))
+    if @task.update(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId , :userId))
       flash[:noticeEdit] = t('flash.edit')
       redirect_to tasks_path
     else
@@ -67,4 +65,3 @@ class TasksController < ApplicationController
     end
   end
 end
-

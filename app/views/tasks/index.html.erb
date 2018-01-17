@@ -9,7 +9,13 @@
 	<% if flash[:noticeDelete] %>
 	<p><%= flash[:noticeDelete] %></p>
 	<% end %>
-</br>
+<h3>USER : <%=session[:username]%></h3></br>
+<%= link_to "SIGN OUT",root_path(session: 'logout'),  class: "btn btn-danger btn-la active"%>
+
+    <%if session[:username]=="admin"%>
+<%= link_to "USER LIST",users_url,  class: "btn btn-primary btn-la active"%>
+    <%end%>
+</br></br>
     <%= form_tag(tasks_path, method: :get) do %>
         TITLE is <%= text_field_tag :titleWord %>
         <%= submit_tag "SEARCH_TITLE" , :class => "btn btn-primary " %>

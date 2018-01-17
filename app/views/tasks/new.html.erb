@@ -23,6 +23,7 @@
         <td><%= f.select :priority , [["高", "高"], ["中", "中"], ["低", "低"]] %></td>
         <td><%= f.select :status , [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %></td>
         <td><%= f.text_field :labelId %></td>
+          <%= f.hidden_field :userId, :value => session[:id] %>
         </tr>
         </tbody>
 
