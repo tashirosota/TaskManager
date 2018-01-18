@@ -10,9 +10,6 @@ ruby '2.4.2'
 gem 'kaminari', '~> 0.17.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
-
 #bootstrap
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
@@ -21,9 +18,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
  gem 'uglifier', '>= 1.3.0'
-
 # Use Postgre as the database for Active Record when using production
-#, group: :production
+# Use sqlite3 as the database for Active Record
+gem 'sqlite3', group: :development
 group :production do
   gem 'pg', '~> 0.20'
   gem 'rails_12factor'
