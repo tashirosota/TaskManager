@@ -38,7 +38,7 @@
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
         <td><%= task.created_at %></td>
-        <td><%= task.line %></td>
+        <td><%= task.line.strftime("%Y-%m-%d %H:%M:%S") %></td>
       </tr>
   <% end %>
   </tbody>

@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 20180116065435) do
     t.text "memo", limit: 500
     t.string "priority"
     t.string "status"
-    t.integer "labelId"
+    t.string "label1"
+    t.string "label2"
     t.integer "userId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

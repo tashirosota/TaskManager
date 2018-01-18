@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 100.times do |no|
   if no<33
-    Task.create(:title => "test-A#{no}" , :line => "201#{no/7.to_i}-06-28", :memo => "memo-A#{no}", :priority => "高", :status =>"着手中" , :userId=>1)
+    Task.create(:title => "test-A#{no}" , :line => "201#{no/7.to_i}-06-28" , :memo => "memo-A#{no}", :priority => "高", :status =>"着手中" , :userId=>1)
   elsif no<66
     Task.create(:title => "test-B#{no}" , :line => "20#{no/8.to_i}3-06-28", :memo => "memo-B#{no}", :priority => "中", :status =>"未着手", :userId=>1)
   else

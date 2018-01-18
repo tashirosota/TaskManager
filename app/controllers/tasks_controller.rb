@@ -7,6 +7,8 @@ class TasksController < ApplicationController
       @tasks = Task.where(title: params[:titleWord]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #タイトル検索
     elsif params[:commit] == 'SEARCH_STATUS'
       @tasks = Task.where(status: params[:statusWord]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #ステータス検索
+    elsif params[:commit] == 'SEARCH_LABEL'
+      @tasks = Task.where("(label1 = ?) OR (label2 = ?)", params[:labelWord], params[:labelWord]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #ステータス検索
     elsif params[:sort] == 'priority' # 優先度
       @tasks = Task.order(params[:sort]).where(userId: session[:id]).page(params[:page]).per(PER) # pagination #余裕があればソート順の指定
     elsif params[:sort] == 'line' # 締め切り
@@ -34,7 +36,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId ,:userId))
+    @task = Task.new(params.require(:task).permit(:title, :line, :memo, :priority, :status, :label1, :label2 ,:userId))
     p @task
     if @task.save
       flash[:noticeCreate] = t('flash.create')
@@ -48,7 +50,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     p @task
     @task.save
-    if @task.update(params.require(:task).permit(:title, :line, :memo, :priority, :status, :labelId , :userId))
+    if @task.update(params.require(:task).permit(:title, :line, :memo, :priority, :status,  :label1, :label2, :userId))
       flash[:noticeEdit] = t('flash.edit')
       redirect_to tasks_path
     else
