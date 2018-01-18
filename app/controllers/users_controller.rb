@@ -23,15 +23,10 @@ class UsersController < ApplicationController
       session[:userrole] = @user.role
       redirect_to tasks_path
     end
-
   end
 
   def sign_in
     @user = User.new
-    # if session[:userrole]=="admin"
-    # else
-    #   render root_path
-    # end
   end
 
   # GET /users/1
