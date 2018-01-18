@@ -1,7 +1,8 @@
 <h1>TASK MANAGER</h1></br>
-
+<p id="notice"><%= notice %></p>
 <% if params[:session]=="logout"%>
     <%session[:id] = nil%>
+    <%session[:userrole] = nil%>
     <%session[:username] = nil%>
 <%end%>
 

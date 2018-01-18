@@ -15,7 +15,7 @@
   end
 end
 
-# User.create(:name => "admin" , :pass => "1111", :role => "admin")
+User.create(:name => "admin" , :pass => "0422", :role => "admin",:id=>1)
 
 #Task.create(:title => "B1234BB"  ,:text => "memo223")
 #tasks = Task.create([{ title: 'AAA' }, { line: DateTime.now }, { memo: 'AAA' }, { priority: 1 }, { statusId: 1 }, { labelId: 2 }])

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :users do
 
+  resources :users do
   end
+
+  get 'admin/users', to: 'users#index'
 
   resources :tasks do
   end

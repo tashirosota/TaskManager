@@ -1,14 +1,48 @@
+<h1>DETAIL</h1>
+
 <p id="notice"><%= notice %></p>
+<h4>USER</h4>
+<div class="container">
+  <table class="table table-bordered" >
+    <thead>
+    <tr class="active">
+      <th>Name</th>
+      <th>Pass</th>
+      <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><%= @user.name %></td>
+          <td><%= @user.pass %></td>
+          <td><%= @user.role %></td>
+        </tr>
+    </tbody>
+  </table>
+  <h4>TASKS</h4>
+  <table class="table table-bordered table table-hover">
+  <thead >
+  <tr class="active">
+    <th><%= t('view.taskname') %></th>
+    <th><%= t('view.statusId') %></th>
+    <th><%= t('view.priority') %></th>
+    <th><%= t('view.createdAt') %></th>
+    <th><%= t('view.line') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.created_at %></td>
+        <td><%= task.line %></td>
+      </tr>
+  <% end %>
+  </tbody>
+  </table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Pass:</strong>
-  <%= @user.pass %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+</div>
+<%= paginate @tasks %></br>
+<%= link_to 'BACK', admin_users_url , class:"btn btn-danger btn-sm active"%>

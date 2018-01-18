@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if session[:userrole] == 'admin'
+      @users = User.all
+      @tasks = Task.all
+    else
+      redirect_to root_path
+    end
   end
 
   def certification
@@ -14,7 +19,8 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       session[:id] = @user.id
-      session[:username] = params[:user][:name]
+      session[:username] = @user.name
+      session[:userrole] = @user.role
       redirect_to tasks_path
     end
 
@@ -22,11 +28,18 @@ class UsersController < ApplicationController
 
   def sign_in
     @user = User.new
+    # if session[:userrole]=="admin"
+    # else
+    #   render root_path
+    # end
   end
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show;
+    per = 10
+    @tasks = Task.where(userId: params[:id]).page(params[:page]).per(per)
+  end
 
   # GET /users/new
   def new
@@ -39,12 +52,17 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(params.require(:user).permit(:name, :pass, :role))
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        if session[:username]=="admin"
+          format.html { redirect_to admin_users_url, notice: 'User was successfully created.' }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { redirect_to root_path, notice: 'User was successfully created.' }
+          format.json { render :show, status: :created, location: @user }
+        end
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -56,12 +74,19 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+      if User.where(role: 'admin').count==1&&@user.role=='admin'
+        format.html { redirect_to admin_users_url, notice: 'User wasn\'t successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
+
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        if @user.update(params.require(:user).permit(:name, :pass, :role))
+          format.html { redirect_to admin_users_url, notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+
+        end
       end
     end
   end
@@ -69,10 +94,24 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if User.where(role: 'admin').count==1 && @user.role==('admin')
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User wasn\'t successfully destroyed.' }
+        format.json { head :no_content }
+      end
+
+    else
+      @tasks = Task.where(userId: params[:id])
+      @tasks.each do |task|
+        task.destroy
+      end
+
+      @user.destroy
+      respond_to do |format|
+        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

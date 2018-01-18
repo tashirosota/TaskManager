@@ -12,8 +12,8 @@
 <h3>USER : <%=session[:username]%></h3></br>
 <%= link_to "SIGN OUT",root_path(session: 'logout'),  class: "btn btn-danger btn-la active"%>
 
-    <%if session[:username]=="admin"%>
-<%= link_to "USER LIST",users_url,  class: "btn btn-primary btn-la active"%>
+    <%if session[:userrole].=='admin'%>
+<%= link_to "USER LIST",admin_users_url,  class: "btn btn-primary btn-la active"%>
     <%end%>
 </br></br>
     <%= form_tag(tasks_path, method: :get) do %>
