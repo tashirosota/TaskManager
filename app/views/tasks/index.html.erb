@@ -21,7 +21,7 @@
     <%= submit_tag "SEARCH_TITLE" , :class => "btn btn-primary " %>
     STATUS is <%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
     <%= submit_tag "SEARCH_STATUS" , :class => "btn btn-primary " %>
-    LABEL is <%= select_tag :labelWord , options_for_select({"null" =>"","work" => "work","life" => "life", "hobby" => "hobby", "sports" => "sports", "study" => "study", "music" => "music"}) %>
+    LABEL is <%= select_tag :labelWord , options_for_select({"null" =>nil,"work" => "work","life" => "life", "hobby" => "hobby", "sports" => "sports", "study" => "study", "music" => "music"}) %>
     <%= submit_tag "SEARCH_LABEL" , :class => "btn btn-primary " %></br></br>
     <%if params[:commit]=="ALL LIST"%>
     <%elsif !params[:commit].nil?%>
