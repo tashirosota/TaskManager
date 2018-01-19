@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  PER = 10
+  PER = 6
 
   def index
     priority = %w[高 中 低]

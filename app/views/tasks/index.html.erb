@@ -17,12 +17,16 @@
     <%end%>
 </br></br>
     <%= form_tag(tasks_path, method: :get) do %>
-        TITLE is <%= text_field_tag :titleWord %>
-        <%= submit_tag "SEARCH_TITLE" , :class => "btn btn-primary " %>
-        STATUS is <%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
-        <%= submit_tag "SEARCH_STATUS" , :class => "btn btn-primary " %>
-    LABEL is <%= select_tag :labelWord , options_for_select({"work" => "work","life" => "life", "hobby" => "hobby", "sports" => "sports", "study" => "study", "music" => "music", "null" =>""}) %>
-    <%= submit_tag "SEARCH_LABEL" , :class => "btn btn-primary " %>
+    TITLE is <%= text_field_tag :titleWord %>
+    <%= submit_tag "SEARCH_TITLE" , :class => "btn btn-primary " %>
+    STATUS is <%= select_tag :statusWord , options_for_select({"未着手" => "未着手","着手中" => "着手中", "完了" => "完了"}) %>
+    <%= submit_tag "SEARCH_STATUS" , :class => "btn btn-primary " %>
+    LABEL is <%= select_tag :labelWord , options_for_select({"null" =>"","work" => "work","life" => "life", "hobby" => "hobby", "sports" => "sports", "study" => "study", "music" => "music"}) %>
+    <%= submit_tag "SEARCH_LABEL" , :class => "btn btn-primary " %></br></br>
+    <%if params[:commit]=="ALL LIST"%>
+    <%elsif !params[:commit].nil?%>
+        <%= submit_tag "ALL LIST", :class => "btn btn-danger btn-la active" %>
+    <%end%>
     <% end %>
     </br>
     <div class="container">
@@ -44,7 +48,7 @@
               <td><%= task.title %></td>
               <td><%= task.status %></td>
               <td><%= task.priority %></td>
-              <td><%= task.line %></td>
+              <td><%= task.line.strftime('%Y年%m月%d日 %H:%M') %></td>
               <td><%= task.label1 %></td>
               <td><%= task.label2 %></td>
               <td><%= link_to "DETAIL", task_path(id: task.id), class:"btn btn-info btn-sm active"%>
@@ -53,10 +57,11 @@
         </tbody>
       </table>
     </div>
-<%= form_tag(tasks_path, method: :get) do %>
-    <%= link_to "CREATE", new_task_path , class:"btn btn-success btn-sm active" %>
-    <%= submit_tag "ALL LIST", :class => "btn btn-danger btn-sm active" %>
-<% end %>
+<%= link_to "CREATE", tasks_path(create: "cr") , class:"btn btn-success btn-sm active" %>
+<%if params[:create]=="cr"%>
+    <%= render partial: 'new', task: @task = Task.new %>
+<%end%>
+</br>
 </br>
     <%= link_to "SORT BY DEAD LINE",tasks_path(sort: 'line') , class:"btn btn-primary btn-sm active" %>
     <%= link_to "SORT BY CREATED AT DESC",tasks_path(sort: 'created_at DESC') , class:"btn btn-primary btn-sm active"  %>

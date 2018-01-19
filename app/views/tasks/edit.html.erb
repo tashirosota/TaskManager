@@ -19,14 +19,13 @@
         <tbody> 
         <tr>
           <td><%= f.text_field :title %></td>
-          <td><%= f.datetime_select :line %></td>
+          <td><%= f.datetime_select :line , {use_month_numbers: true}, {class: "form-control bootstrap-date"}%></td>
           <td><%= f.text_field :memo %></td>
           <td><%= f.select :priority , [["高", "高"], ["中", "中"], ["低", "低"]] %></td>
           <td><%= f.select :status , [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %></td>
-          <td><%= f.select :label1 ,[["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"], ["null
+          <td><%= f.select :label1 ,[["null", ""],["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"], ["null
 ", ""]]%></td>
-          <td><%= f.select :label2 ,[["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"], ["null
-", ""]]%></td>
+          <td><%= f.select :label2 ,[["null", ""],["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"]]%></td>
           <%= f.hidden_field :userId, :value => session[:id] %>
         </tr>
         </tbody>
@@ -36,4 +35,5 @@
     </div>
     </br>
     <%= f.submit 'DONE', class:"btn btn-success btn-sm active"%>
+    <%= link_to 'BACK', task_path(id: @task.id) , class:"btn btn-info btn-sm active"%>
 <% end %>

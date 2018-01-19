@@ -3,7 +3,7 @@
 　<p><%= t('error.error1') %></p>
 　<% end %>　
 <p>
-<%= link_to "EDIT", edit_task_path(id: @task.id) , class:"btn btn-success btn-sm active"%><br />
+
 <div class="container">
   <table class="table table-bordered">
     <thead>
@@ -24,13 +24,15 @@
       <td><%= @task.memo %></td>
       <td><%= @task.priority %></td>
       <td><%= @task.status %></td>
-      <td><%= @task.line %></td>
-      <td><%= @task.created_at %></td>
+      <td><%= @task.line.strftime('%Y年%m月%d日 %H:%M') %></td>
+      <td><%= @task.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
       <td><%= @task.label1 %></td>
       <td><%= @task.label2 %></td>
     </tr>
     </tbody>
   </table>
 </div>
+<%= link_to "EDIT", edit_task_path(id: @task.id) , class:"btn btn-success btn-sm active"%>
 <%= link_to "DELETE",task_path(id: @task.id) , method: :delete , class: "btn btn-danger btn-sm active"%>
+<%= link_to 'BACK', tasks_path , class:"btn btn-info btn-sm active"%>
 </p>

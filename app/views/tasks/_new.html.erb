@@ -1,4 +1,3 @@
-<h1>CREATE</h1>
 <% if @task.errors.any? %>
     <%= t('error.error1') %>
 <% end %>
@@ -30,7 +29,6 @@
           <%= f.hidden_field :userId, :value => session[:id] %>
         </tr>
         </tbody>
-
         </tbody>
       </table>
     </div>
