@@ -12,8 +12,8 @@
           <th><%= f.label :memo, t('view.note') %></th>
           <th><%= f.label :priority, t('view.priority') %></th>
           <th><%= f.label :status, t('view.statusId') %></th>
-          <th><%= f.label :label1, t('view.labelId') %></th>
-          <th><%= f.label :label2, t('view.labelId') %></th>
+          <th><%= f.label :label1, t('view.labelId') + "1" %></th>
+          <th><%= f.label :label2, t('view.labelId') + "2"%></th>
         </tr>
         </thead>
         <tbody> 
@@ -23,8 +23,10 @@
           <td><%= f.text_field :memo %></td>
           <td><%= f.select :priority , [["高", "高"], ["中", "中"], ["低", "低"]] %></td>
           <td><%= f.select :status , [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %></td>
-          <td><%= f.select :label1 ,[["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"]]%></td>
-          <td><%= f.select :label2 ,[["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"]]%></td>
+          <td><%= f.select :label1 ,[["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"], ["null
+", ""]]%></td>
+          <td><%= f.select :label2 ,[["work", "work"], ["life", "life"],["hobby", "hobby"], ["sports", "sports"],["study", "study"], ["music", "music"], ["null
+", ""]]%></td>
           <%= f.hidden_field :userId, :value => session[:id] %>
         </tr>
         </tbody>
