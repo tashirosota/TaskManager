@@ -61,8 +61,7 @@
 <%if params[:create]=="cr"%>
     <%= render partial: 'new', task: @task = Task.new %>
 <%end%>
-</br>
-</br>
+</br></br>
     <%= link_to "SORT BY DEAD LINE",tasks_path(sort: 'line') , class:"btn btn-primary btn-sm active" %>
     <%= link_to "SORT BY CREATED AT DESC",tasks_path(sort: 'created_at DESC') , class:"btn btn-primary btn-sm active"  %>
     <%= link_to "SORT BY PRIORITY",tasks_path(sort: 'priority') , class:"btn btn-primary btn-sm active" %>
