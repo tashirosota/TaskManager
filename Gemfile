@@ -4,8 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-# ruby -v memo memo
-ruby '2.4.2' 
+# ruby -v
+ruby '2.5.0' 
 # Implement pagination use kaminari
 gem 'kaminari', '~> 0.17.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -22,7 +22,8 @@ gem 'sass-rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: :development
 group :production do
-  gem 'pg', '~> 0.20'
+
+#  gem 'pg'
   gem 'rails_12factor'
 end
 
